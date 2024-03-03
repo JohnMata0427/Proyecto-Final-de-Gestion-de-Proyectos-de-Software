@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../layouts/Inicio.dart';
+import '../layouts/inicio.dart';
 import 'politicas.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,22 +20,24 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromARGB(255, 4, 4, 4),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(150.0),
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: <Color>[
-                Colors.red,
-                Colors.black,
+                Color.fromARGB(255, 97, 12, 12),
+                Color.fromRGBO(4, 4, 4, 1),
               ],
             ),
           ),
           child: const Center(
-            child: Text('Iniciar sesión', textAlign: TextAlign.center, style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold)),
+            child: Text('Iniciar sesión',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold)),
           ),
         ),
       ),
@@ -50,7 +52,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: const Text('Ingrese su usuario: ', style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold)),
+                    child: const Text('Ingrese su usuario: ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold)),
                   ),
                   Container(
                     margin: const EdgeInsets.all(10),
@@ -84,7 +90,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: const Text('Ingrese su contraseña: ', style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold)),
+                    child: const Text('Ingrese su contraseña: ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold)),
                   ),
                   Container(
                     margin: const EdgeInsets.all(10),
@@ -95,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: TextFormField(
                       validator: (value) {
-                        if(value!.isEmpty) {
+                        if (value!.isEmpty) {
                           return 'Por favor, ingrese su contraseña';
                         }
                         return null;
@@ -115,7 +125,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               isVisible = !isVisible;
                             });
                           },
-                          icon: Icon(isVisible? Icons.visibility : Icons.visibility_off),
+                          icon: Icon(isVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off),
                         ),
                         suffixIconColor: Colors.black87,
                       ),
@@ -128,36 +140,45 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(onPressed: () {}, child: const Text('Olvidé mi contraseña')),
+                      TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Olvidé mi contraseña',
+                            style: TextStyle(color: Colors.red),
+                          )),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 14.0),
-                      child: Text('Recuerdame'),
-                    ),
-                    Checkbox(
-                      value: isChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
-                      },
-                    ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 14.0),
+                        child: Text('Recuerdame'),
+                      ),
+                      Checkbox(
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        },
+                      ),
                     ],
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.5,
-                    decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(10)),
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(10)),
                     child: TextButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          if (usuarioController.text == 'admin' && contrasenaController.text == 'admin') {
+                          if (usuarioController.text == 'admin' &&
+                              contrasenaController.text == 'admin') {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Home()),
+                              MaterialPageRoute(
+                                  builder: (context) => const Home()),
                             );
                           } else {
                             // ignore: avoid_print
@@ -167,29 +188,35 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [Text('Iniciar sesión'),
-                          Icon(Icons.login)
-                        ]
-                      ),
+                          children: [
+                            Text('Iniciar sesión',
+                                style: TextStyle(color: Colors.white)),
+                            Icon(Icons.login, color: Colors.white)
+                          ]),
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20.0),
-                      child: Text('¿No tienes cuenta?'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        // ignore: avoid_print
-                        print('Registrarse');
-                      },
-                      child: const Text('Registrarse')
-                    ),
-                  ],
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20.0),
+                        child: Text('¿No tienes cuenta?'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          // ignore: avoid_print
+                          print('Registrarse');
+                        },
+                        child: const Text('Registrarse',
+                            style: TextStyle(color: Colors.red)),
+                      ),
+                    ],
                   ),
-                  const Text('O Continuar con:', style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                  const Text('O Continuar con:',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -210,13 +237,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 40.0),
-                  const Text('Al continuar, tú estás de acuerdo con nuestras', style: TextStyle(color: Colors.white, fontSize: 10.0, fontWeight: FontWeight.bold)),
+                  const Text('Al continuar, tú estás de acuerdo con nuestras',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10.0,
+                          fontWeight: FontWeight.bold)),
                   TextButton(
-                    onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const TerminosCondiciones()));
-                    }, 
-                    child: const Text('Políticas de Privacidad, Terminos y Condiciones', style: TextStyle(color: Colors.red, fontSize: 10.0, fontWeight: FontWeight.bold))
-                  ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const TerminosCondiciones()));
+                      },
+                      child: const Text(
+                          'Políticas de Privacidad, Terminos y Condiciones',
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.bold))),
                 ],
               ),
             ),

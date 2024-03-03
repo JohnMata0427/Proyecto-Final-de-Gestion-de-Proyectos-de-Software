@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColorDark: Colors.black,
+        primaryColorDark: const Color.fromRGBO(4, 4, 4, 1),
         primaryColorLight: Colors.white,
         primarySwatch: Colors.red,
         checkboxTheme: CheckboxThemeData(
