@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'auth/login.dart';
+import 'package:vehicheck_express/layouts/inicio.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  static const String title = 'VehiCheck Express';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'VehiCheck Express',
+      title: title,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
+        primaryColor: const Color(0xFFFF0000),
         primaryColorDark: const Color.fromRGBO(4, 4, 4, 1),
         primaryColorLight: Colors.white,
         primarySwatch: Colors.red,
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
           }),
         ),
       ),
-      home: const LoginScreen(),
+      home: const Home(),
     );
   }
 }

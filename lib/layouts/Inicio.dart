@@ -1,8 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:vehicheck_express/layouts/pago/pago.dart';
 import '../auth/login.dart';
 import 'agendamiento/agentamiento.dart';
+import '../globals.dart' as globals;
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -34,7 +36,7 @@ class Home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Modulo(
-                          titulo: 'Trabajos Realizados',
+                          titulo: 'Cuenta',
                           imagen: 'images/icons/trabajos.png',
                           child: LoginScreen()),
                       Modulo(
@@ -44,17 +46,17 @@ class Home extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10.0),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Modulo(
+                      const Modulo(
                           titulo: 'Seguimiento en tiempo real',
                           imagen: 'images/icons/seguimiento.png',
                           child: LoginScreen()),
                       Modulo(
                           titulo: 'Pago en línea',
                           imagen: 'images/icons/pago.png',
-                          child: LoginScreen()),
+                          child: (globals.selectedDay.toString().contains('-') && globals.selectedHour > 5 && globals.selectedHour < 22) ? const PagoOnline() : const Home()),
                     ],
                   ),
                   const SizedBox(height: 10.0),
@@ -79,6 +81,7 @@ class Home extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => const LoginScreen()));
                     },
+
                     style: ButtonStyle(
                       backgroundColor: const MaterialStatePropertyAll(
                           Color.fromARGB(255, 125, 0, 16)),

@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="VehiCheck Express"
+        android:label="vehi_check_express"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

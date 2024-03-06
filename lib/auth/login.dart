@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../auth/registro.dart';
 import '../layouts/inicio.dart';
 import 'politicas.dart';
+import '../globals.dart' as globals;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -32,6 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Color.fromARGB(255, 97, 12, 12),
                 Color.fromRGBO(4, 4, 4, 1),
               ],
+            ),
+            border: Border(
+              bottom: BorderSide(width: 2.0, color: Colors.red),
             ),
           ),
           child: const Center(
@@ -173,16 +178,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          if (usuarioController.text == 'admin' &&
-                              contrasenaController.text == 'admin') {
+                          if (globals.usuarios.contains(usuarioController.text) &&
+                              globals.passwords[globals.usuarios.indexOf(usuarioController.text)] ==
+                                  contrasenaController.text) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const Home()),
                             );
                           } else {
-                            // ignore: avoid_print
-                            print('Usuario o contraseña incorrectos');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Usuario o contraseña incorrectos'),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
                           }
                         }
                       },
@@ -191,6 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Text('Iniciar sesión',
                                 style: TextStyle(color: Colors.white)),
+                            SizedBox(width: 5.0),
                             Icon(Icons.login, color: Colors.white)
                           ]),
                     ),
@@ -204,8 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          // ignore: avoid_print
-                          print('Registrarse');
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistroScreen()));
                         },
                         child: const Text('Registrarse',
                             style: TextStyle(color: Colors.red)),
@@ -217,22 +227,30 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.white,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
                         onPressed: () {
                           // ignore: avoid_print
-                          print('Google');
+                          print('Facebook');
                         },
-                        icon: const Icon(Icons.favorite),
+                        icon: const Icon(Icons.facebook, color: Colors.blue, size: 30.0),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.white),
+                        )
                       ),
+                      const SizedBox(width: 15.0),
                       IconButton(
                         onPressed: () {
                           // ignore: avoid_print
-                          print('Facebook');
+                          print('Google');
                         },
-                        icon: const Icon(Icons.facebook),
+                        icon: const Icon(Icons.email, color: Colors.white, size: 30.0),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.red),
+                        )
                       ),
                     ],
                   ),
